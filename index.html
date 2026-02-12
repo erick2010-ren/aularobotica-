@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exatamente • Matemática com estilo</title>
+  <!-- Fonte moderna e limpa -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ----- CORES E RESET ----- */
+    :root {
+      --azul-profundo: #0a3b5e;       /* fundo principal – azul elegante */
+      --laranja-vibrante: #f19a3e;    /* títulos principais e detalhes */
+      --laranja-suave: #ffb86b;       /* hover e toques suaves */
+      --branco-gelo: #f8faff;         /* texto e cards */
+      --cinza-claro: #eef2f7;         /* bordas sutis */
+      --sombra-leve: rgba(0, 20, 40, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--azul-profundo);  /* ♥ FUNDO AZUL ♥ */
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--branco-gelo);
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.06); /* leve transparência para profundidade */
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 20px 30px var(--sombra-leve);
+    }
+
+    /* ----- TÍTULOS PRINCIPAIS LARANJA (exigência sagrada) ----- */
+    h1, h2, h3 {
+      color: var(--laranja-vibrante);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      border-left: 8px solid var(--laranja-vibrante);
+      padding-left: 1.2rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-bottom: 3px dashed var(--laranja-suave);
+      padding-bottom: 0.5rem;
+      margin-top: 2.2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: var(--laranja-suave); /* tom laranja um pouco mais suave, mas ainda laranja */
+      font-weight: 600;
+    }
+
+    /* ----- BOTÕES SUPER ARREDONDADOS (exigência máxima) ----- */
+    .botao, button, .btn {
+      display: inline-block;
+      background-color: var(--laranja-vibrante);
+      color: #0a2c42;             /* contraste escuro legível */
+      font-weight: 700;
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 60px;        /* ALTAMENTE ARREDONDADO – bordas enormes */
+      cursor: pointer;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 0 #b25e1a, 0 6px 16px rgba(0,0,0,0.2);
+      letter-spacing: 0.5px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .botao:hover, button:hover, .btn:hover {
+      background-color: #ffa841;
+      transform: translateY(3px);
+      box-shadow: 0 4px 0 #b25e1a, 0 10px 20px rgba(241,154,62,0.25);
+    }
+
+    /* botões secundários arredondados também */
+    .botao-secundario {
+      background-color: transparent;
+      color: var(--laranja-vibrante);
+      border: 3px solid var(--laranja-vibrante);
+      box-shadow: none;
+      border-radius: 60px;
+    }
+
+    .botao-secundario:hover {
+      background-color: rgba(241, 154, 62, 0.08);
+      color: #ffd8b0;
+      border-color: var(--laranja-suave);
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    /* ----- CARDS – EXEMPLOS E QUESTÕES ----- */
+    .grade-exemplos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .card {
+      background: rgba(12, 50, 75, 0.75); /* tom de azul mais escuro, mantendo harmonia */
+      backdrop-filter: blur(4px);
+      padding: 1.8rem 1.5rem;
+      border-radius: 32px;        /* cantos arredondados mas não tanto quanto botão */
+      border: 1px solid rgba(241, 154, 62, 0.3);
+      box-shadow: 0 12px 18px -8px rgba(0,0,0,0.3);
+      transition: 0.15s;
+    }
+
+    .card:hover {
+      border-color: var(--laranja-vibrante);
+      background: rgba(8, 65, 92, 0.85);
+    }
+
+    .card p {
+      margin-bottom: 0.8rem;
+    }
+
+    .exemplo-matematica {
+      background: #0a3142;
+      padding: 1.2rem 1.5rem;
+      border-radius: 50px;        /* levemente redondo, mas não exagero */
+      font-family: 'Courier New', monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fae074;
+      border-left: 10px solid #f19a3e;
+      margin: 1.8rem 0 1rem;
+    }
+
+    /* Área de questões estilo "quiz" */
+    .lista-questoes {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .lista-questoes li {
+      background: rgba(0, 0, 0, 0.18);
+      margin-bottom: 0.9rem;
+      padding: 1.2rem 1.8rem;
+      border-radius: 40px;       /* bem arredondado mas sem exageros de botão */
+      border-left: 8px solid var(--laranja-vibrante);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .questao-enunciado {
+      color: white;
+    }
+
+    .tag {
+      background: var(--laranja-vibrante);
+      color: #0a2c42;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      text-align: center;
+      border-top: 2px solid rgba(241, 154, 62, 0.35);
+      padding-top: 2rem;
+      color: #bcd4e6;
+    }
+
+    /* ajustes para mobile */
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- CABEÇALHO COM TÍTULO PRINCIPAL LARANJA -->
+    <h1>🧠 exatamente</h1>
+    <p style="font-size: 1.35rem; margin-bottom: 1.8rem; color: #d4eaff;">
+      Matemática, física e química com exemplos vivos. 
+      <span style="background-color: rgba(241,154,62,0.25); padding: 0.3rem 1rem; border-radius: 60px;">fundação: azul profundo + laranja</span>
+    </p>
+
+    <!-- BOTÃO ALTAMENTE ARREDONDADO (exemplo de chamada) -->
+    <div style="display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <button class="botao">✨ explorar exemplos</button>
+      <a href="#" class="botao botao-secundario">📘 desafios</a>
+    </div>
+
+    <!-- SEÇÃO EXEMPLOS COM TÍTULO LARANJA -->
+    <h2>📐 exemplos resolvidos</h2>
+    
+    <!-- GRADE DE CARDS – EXEMPLOS DE EXATAS -->
+    <div class="grade-exemplos">
+      <!-- CARD 1 - Matemática -->
+      <div class="card">
+        <h3>🔹 função afim</h3>
+        <p style="color: #e0f0ff;">Custo de produção: <br> <strong style="color: white;">C(x) = 15x + 230</strong></p>
+        <div class="exemplo-matematica" style="font-size: 1.1rem; padding: 0.8rem 1.2rem;">
+          f(10) = 15·10 + 230 = 380
+        </div>
+        <p style="color: #c9e1f0;">📌 <em>10 unidades custam R$ 380,00</em></p>
+        <span class="tag" style="background: #f19a3e; color: #051f2c;">matemática</span>
+      </div>
+      <!-- CARD 2 - Física -->
+      <div class="card">
+        <h3>⚡ movimento uniforme</h3>
+        <p style="color: #e0f0ff;">S = S₀ + v·t</p>
+        <div class="exemplo-matematica" style="font-size: 1.15rem;">
+          S = 12 + 4·8 = 44 m
+        </div>
+        <p style="color: #c9e1f0;">🚗 posição após 8 segundos</p>
+        <span class="tag" style="background: #f19a3e;">física</span>
+      </div>
+      <!-- CARD 3 - Química -->
+      <div class="card">
+        <h3>🧪 concentração</h3>
+        <p style="color: #e0f0ff;">C = m / V   (g/L)</p>
+        <div class="exemplo-matematica" style="font-size: 1.15rem;">
+          15 g / 0,5 L = 30 g/L
+        </div>
+        <p style="color: #c9e1f0;">🧴 solução salina</p>
+        <span class="tag" style="background: #f19a3e;">química</span>
+      </div>
+    </div>
+
+    <!-- MAIS EXEMPLOS EM FORMATO DE LISTA (título continua laranja) -->
+    <h2 style="margin-top: 1.2rem;">🧮 álgebra e geometria</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+      <div style="background: #0e405a; padding: 1.5rem; border-radius: 40px;">
+        <h3 style="color: #ffb86b; margin-top: 0;">➗ Bhaskara</h3>
+        <p style="color: #e2f0fa;">x² – 5x + 6 = 0  →  Δ = 1, x = 2 e x = 3</p>
+      </div>
+      <div style="background: #0e405a; padding: 1.5rem; border-radius: 40px;">
+        <h3 style="color: #ffb86b; margin-top: 0;">📏 Teorema de Pitágoras</h3>
+        <p style="color: #e2f0fa;">catetos 6 e 8 → hipotenusa = 10</p>
+      </div>
+    </div>
+
+    <!-- SEÇÃO QUESTÕES (ENUNCIADOS + BOTÃO ARREDONDADO) -->
+    <h2>✏️ questões para praticar</h2>
+    <ul class="lista-questoes">
+      <li>
+        <span class="questao-enunciado">1. Resolva: 2x + 7 = 15</span>
+        <span class="tag">fácil</span>
+      </li>
+      <li>
+        <span class="questao-enunciado">2. (UEM) – log₂(32) + log₁₀(100)</span>
+        <span class="tag">médio</span>
+      </li>
+      <li>
+        <span class="questao-enunciado">3. Área do círculo com raio 5 cm (π=3,14)</span>
+        <span class="tag">geom.</span>
+      </li>
+      <li>
+        <span class="questao-enunciado">4. Calcule a derivada: f(x)=4x³ – 2x</span>
+        <span class="tag">cálculo</span>
+      </li>
+    </ul>
+    
+    <!-- Botão arredondado para ver respostas – comprovando arredondamento extremo -->
+    <div style="text-align: right; margin-top: 1.8rem;">
+      <button class="botao" style="padding: 0.8rem 2.5rem; font-size: 1.2rem;">
+        🟠 ver respostas
+      </button>
+    </div>
+
+    <!-- MAIS EXEMPLOS PRÁTICOS COM COR LARANJA TÍTULO -->
+    <h2>🔬 ciências exatas em ação</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.8rem 0;">
+      <div style="flex: 1; min-width: 240px; background: #0a3850; border-radius: 48px; padding: 1.8rem;">
+        <h3 style="color: #ffaa4e;">▶ lei de Ohm</h3>
+        <p style="font-size: 1.25rem; font-weight: 600;">U = R · i</p>
+        <p>Exemplo: 12 V = 6 Ω · 2 A</p>
+      </div>
+      <div style="flex: 1; min-width: 240px; background: #0a3850; border-radius: 48px; padding: 1.8rem;">
+        <h3 style="color: #ffaa4e;">⚛️ mol e massa</h3>
+        <p style="font-size: 1.25rem; font-weight: 600;">n = m / M</p>
+        <p>Exemplo: 36g de H₂O → 2 mols</p>
+      </div>
+    </div>
+
+    <!-- NOVAMENTE: BOTÃO ARREDONDADO – NUNCA É DEMAIS -->
+    <div style="display: flex; justify-content: center; gap: 1.8rem; margin: 2.8rem 0 0.5rem;">
+      <a href="#" class="botao" style="background: #f19a3e; border-radius: 100px; padding: 1rem 3rem;">📥 baixar lista de exercícios</a>
+      <a href="#" class="botao botao-secundario" style="border-radius: 100px;">📊 simulador</a>
+    </div>
+
+    <!-- RODAPÉ COM INFORMAÇÕES -->
+    <footer>
+      <p style="color: #b0dcff;">exatamente • site de exatas • fundo azul, títulos laranja, botões redondos, exemplos e questões ∞</p>
+      <p style="margin-top: 0.8rem;">
+        <span style="border: 2px solid #f19a3e; border-radius: 60px; padding: 0.3rem 1.8rem; display: inline-block;">
+          desenvolvido com 🧡 e #f19a3e
+        </span>
+      </p>
+    </footer>
+  </div>
+  <!-- efeito extra: todos os h1, h2, h3 já estão laranja; botões arredondados; fundo azul em tudo -->
+</body>
+</html>
